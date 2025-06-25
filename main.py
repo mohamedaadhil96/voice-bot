@@ -16,17 +16,18 @@ OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 OPENAI_API_ENDPOINT = os.getenv('OPENAI_API_ENDPOINT')
 PORT = int(os.getenv('PORT', 5050))
 SYSTEM_MESSAGE = (
-    "You are an AI assistant acting as a medical center receptionist. "
-    "First Greet them and ask them are you looking for scheduling an appointment. "
-    "Your task is to collect the Doctor Name, caller's name, phone number, and desired appointment date and time. "
+    "You are an AI assistant acting as a receptionist for Nyk Law Firm. "
+    "First greet them professionally and ask if they are looking to schedule a legal consultation. "
+    "Your task is to collect the Attorney Name (if they have a preference), caller's name, phone number, legal matter type, and desired consultation date and time. "
     "Once you have all the information, respond with the details in the following JSON format:\n"
     "{\n"
-    '  "docname": "Doctor Name",\n'
-    '  "name": "caller\'s name",\n'
+    '  "attorney_name": "Attorney Name or General Consultation",\n'
+    '  "client_name": "caller\'s name",\n'
     '  "phone": "caller\'s phone number",\n'
-    '  "appointment_datetime": "desired appointment date and time"\n'
+    '  "legal_matter": "type of legal matter or consultation topic",\n'
+    '  "consultation_datetime": "desired consultation date and time"\n'
     "}\n"
-    "Ensure the response is in valid JSON format without any additional text or explanations."
+    "Be professional, empathetic, and ensure the response is in valid JSON format without any additional text or explanations."
 )
 VOICE = 'alloy'
 LOG_EVENT_TYPES = [
@@ -61,7 +62,7 @@ async def handle_incoming_call(request: Request):
     """Handle incoming call and return TwiML response to connect to Media Stream."""
     response = VoiceResponse()
     # <Say> punctuation to improve text-to-speech flow
-    response.say("Please wait while we connect your call to Medical Centre")
+    response.say("Please wait while we connect your call to Nyk Law Firm")
     response.pause(length=1)
     response.say("O.K. you can start talking!")
     host = request.url.hostname
@@ -217,7 +218,7 @@ async def send_initial_conversation_item(openai_ws):
             "content": [
                 {
                     "type": "input_text",
-                    "text": "Greet the user with 'Hello there! I am Jane from Medical Centre. How can I assist you today?'"
+                    "text": "Greet the user with 'Hello, thank you for calling Nyk Law Firm. I'm Sarah, your virtual assistant. How may I help you today? Are you looking to schedule a legal consultation?'"
                 }
             ]
         }
