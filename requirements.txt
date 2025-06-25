@@ -3,3 +3,4 @@ uvicorn[standard]
 python-dotenv
 websockets
 twilio
+langchain_openai
