@@ -62,7 +62,7 @@ async def handle_incoming_call(request: Request):
     """Handle incoming call and return TwiML response to connect to Media Stream."""
     response = VoiceResponse()
     # <Say> punctuation to improve text-to-speech flow
-    response.say("Please wait while we connect your call to Nyk Law Firm")
+    response.say("Please wait while we connect your call to The Law Reporters")
     response.pause(length=1)
     response.say("O.K. you can start talking!")
     host = request.url.hostname
