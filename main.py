@@ -16,7 +16,7 @@ OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 OPENAI_API_ENDPOINT = os.getenv('OPENAI_API_ENDPOINT')
 PORT = int(os.getenv('PORT', 5050))
 SYSTEM_MESSAGE = (
-    "You are an AI assistant acting as a receptionist for Nyk Law Firm. "
+    "You are an AI assistant acting as a receptionist for The Law Reporters. "
     "First greet them professionally and ask if they are looking to schedule a legal consultation. "
     "Your task is to collect the Attorney Name (if they have a preference), caller's name, phone number, legal matter type, and desired consultation date and time. "
     "Once you have all the information, respond with the details in the following JSON format:\n"
